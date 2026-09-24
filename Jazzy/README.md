@@ -54,18 +54,28 @@ $ ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true
 ```
 
 ### Abspielen eines Bag-Files:
+```bash
 $ ros2 bag play [NAME] --clock
+```
 
 ### Cartographer ausführen:
+```bash
 $ ros2 launch volksbot cartographer2d.launch
+```
 
 ### Speichern der aufgenommenen Karte:
+```bash
 $ ros2 run nav2_map_server map_saver_cli -f [NAME]
+```
 
 ### Pfadverfolgung mittels Odometrie:
+```bash
 $ ros2 run giovanni gio_node --ros-args -p path:=[PFAD DER .dat DATEI] -p speed:=[SPEED]
--> Empfehlung für [SPEED] ist 0.15
+```
+* Empfehlung für [SPEED] ist 0.15
 
 ### Path logger für X- & Y-Koordinaten des Roboters (Funktioniert auch mit Bag-Files):
-$ ros2 run path_logger logger 
--> Erstellt eine Datei names "odomXYData.txt" im ros2_ws Ordner. Diese kann mit dann z.B. mit GnuPlot geplottet werden. Spalte 1 = X, Spalte 2 = Y.
+```bash
+$ ros2 run path_logger logger
+```
+* Erstellt eine Datei names "odomXYData.txt" im ros2_ws Ordner. Diese kann mit dann z.B. mit GnuPlot geplottet werden. Spalte 1 = X, Spalte 2 = Y.
