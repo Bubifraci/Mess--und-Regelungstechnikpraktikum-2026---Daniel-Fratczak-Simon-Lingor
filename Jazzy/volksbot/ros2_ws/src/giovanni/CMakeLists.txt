@@ -1,0 +1,53 @@
+cmake_minimum_required(VERSION 3.8)
+project(giovanni)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+include_directories(include)
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(volksface REQUIRED)
+
+# adding executable "gio" to make it run via ros2 run
+add_executable(
+  gio_node
+  src/main.cc
+  src/gio_path.cpp
+)
+
+ament_target_dependencies(
+  gio_node
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  tf2
+  volksface
+)
+
+add_executable(
+  gio_volksbot
+  src/gio_volksbot.cpp
+  src/gio_path.cpp
+)
+
+ament_target_dependencies(
+  gio_volksbot
+  rclcpp
+  geometry_msgs
+  tf2
+)
+
+# enables ros2 run to find the executable
+install(TARGETS
+  gio_node
+  gio_volksbot
+  DESTINATION lib/${PROJECT_NAME})
+
+ament_package()
