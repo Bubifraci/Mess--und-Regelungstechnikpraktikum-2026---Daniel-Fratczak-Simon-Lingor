@@ -48,4 +48,5 @@ $ ros2 run giovanni gio_node --ros-args -p path:=[PFAD DER .dat DATEI] -p speed:
 $ ros2 run path_logger logger
 ```
 * Erstellt eine Datei names "odomXYData.txt" im ros2_ws Ordner. Diese kann mit dann z.B. mit GnuPlot geplottet werden.
-  * Spalte 1 = X, Spalte 2 = Y.
+  * Spalte 1 = X
+  * Spalte 2 = Y.
