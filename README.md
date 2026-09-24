@@ -10,6 +10,9 @@ tools -> Hier befinden sich alle Werkzeuge, die wir genutzt haben, abseits von R
 Jazzy -> alle ROS2 src Dateien
 
 Für tools:
+Hier finden sich zwei Ordner: datModifier und plotter. 
+
+datModifier ist das Werkzeug, welches wir zum Modifizieren der .dat Routen verwenden.
 
 Für Jazzy:
 Im Ordner vidPfade befinden sich die .dat files und bag files für die odometriebasierte Pfadverfolgung, die im Video angesprochen wurden.
