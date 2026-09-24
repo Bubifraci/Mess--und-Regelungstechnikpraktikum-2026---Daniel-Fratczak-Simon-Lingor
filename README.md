@@ -1,71 +1,111 @@
 # Praktikum Mess- und Regelungstechnik 2026 - Daniel Fratczak, Simon Lingor
 
-src Code und weiterer relevanter Code für unsere Bearbeitung vom Praktikum Mess- und Regelungstechnik 2026
+Sourcecode und weiterer relevanter Code für unsere Bearbeitung des Praktikums Mess- und Regelungstechnik 2026.
 
-Dies ist das README-file für das Hardwarepraktikum SS26 an der JMU Würzburg. Hier wird beschrieben, wie man was zum Laufen bekommt, jedoch nur für die selbstgeschriebenen ros2 Nodes.
+Dies ist die README-Datei für das Hardwarepraktikum SS26 an der JMU Würzburg. Hier wird beschrieben, wie man die Anwendung ausführt – fokussiert auf die selbst geschriebenen ROS2-Nodes.
 
-Es wurde ROS2 Jazzy unter Mint Linux genutzt, zur Bearbeitung der Aufgaben und für die Aufnahme der Bag-Files.
+Zur Bearbeitung der Aufgaben und zur Aufnahme der Bag-Files wurden ROS2 Jazzy und ROS2 Humble unter Linux Mint genutzt.
+
+Da wir jeweils mit unterschiedlichen ROS2-Versionen gearbeitet haben (Humble und Jazzy), ist die Implementierung wie folgt strukturiert:
+
+* **ROS2 Jazzy:** Implementierung des Giovanni-Reglers (inkl. Simulation) auf Basis von Odometriedaten.
+* **ROS2 Humble:** Implementierung des Giovanni-Reglers (inkl. Simulation) auf Basis von AMCL-Daten.
 
 ---
 
 ## Ordnerstruktur
 
-* **`tools`** -> Hier befinden sich alle Werkzeuge, die wir genutzt haben, abseits von ROS2 (meist unter Python)
-* **`Jazzy`** -> alle ROS2 src Dateien
+* **`tools/`** $\rightarrow$ Werkzeuge abseits von ROS2 (größtenteils in Python geschrieben).
+* **`Jazzy/`** $\rightarrow$ Sourcecode für ROS2 Jazzy (basiert auf Odometriedaten).
+* **`Humble/`** $\rightarrow$ Sourcecode für ROS2 Humble (basiert auf AMCL-Daten).
 
 ---
 
 ## Für `tools`
 
-Hier finden sich zwei Ordner: `datModifier` und `plotter`.
+In `tools/` finden sich zwei Ordner: `datModifier` und `plotter`.
 
 ### 1. `datModifier`
 
-`datModifier` ist das Werkzeug, welches wir zum Modifizieren der `.dat` Routen verwenden. Um dies zu verwenden, füge man die zu bearbeitende Route in denselben Ordner und nenne diese `path.dat`. Innerhalb des Codes findet man eine Variable namens `scale`, standardmäßig ist diese auf `0.5` gesetzt. Je nachdem, wie die Route skaliert werden soll, kann man diesen Wert anpassen. Ist alles ordnungsgemäß eingerichtet, so kann man die Transformation der Route durchführen, indem man die Python-Datei ausführt:
+`datModifier` ist das Werkzeug zum Modifizieren der `.dat`-Routen.
 
+* **Verwendung:**
+1. Die zu bearbeitende Route in denselben Ordner kopieren und in `path.dat` umbenennen.
+2. Im Code existiert die Variable `scale` (Standardwert: `0.5`). Dieser Wert kann je nach gewünschter Skalierung angepasst werden.
+3. Nach der Einrichtung das Skript ausführen:
 `python3 pathModifier.py`
+*(Voraussetzungen: `matplotlib` und `numpy`)*
+4. Die modifizierte Route wird in die Datei `modified.dat` geschrieben. Zudem öffnet sich ein Plot, der die ursprüngliche Route mit der modifizierten Route vergleicht.
 
-*(matplotlib und numpy sind erforderlich!)*
 
-Die modifizierte Route wird in die Datei `modified.dat` geschrieben und es öffnet sich ein Plot, welches die alte Route mit der modifizierten Route vergleicht.
 
 ### 2. `plotter`
 
-In `plotter/` hingegen finden sich mehrere unterschiedliche Tools:
+Im Ordner `plotter/` befinden sich verschiedene Auswertungstools:
 
-* **`plot map/plot_comma.py`** -> Dieses Tool vergleicht ein Odometrie- und AMCL-Weg auf einer Karte `map.yaml` (inkl. der passenden `map.pgm` Datei). Dazu ersetze man die jeweiligen Dateien in dem Ordner (`map`, `pathDataAMCL` und `pathOdom`) mit demselben Namen in dem Ordner und führe `plot_comma.py` aus.
-* **`plot sim/plot_comma.py`** -> Dieses Tool visualisiert die geloggte Route von unserer Giovanni-Sim-Node. Auch hier gilt: In demselben Ordner die geloggte `pos.dat` Datei kopieren und die Python Datei ausführen.
-* **`standardplotter/plot_comma.py`** -> Dieses Tool visualisiert beliebige Routen unserer Nodes. Dazu die Datei zu `pos.dat` umbenennen und in den Ordner kopieren. Dann die Python-Datei ausführen und die Route wird visualisiert.
+* **`plot map/plot_comma.py`** $\rightarrow$ Vergleicht den Odometrie- und AMCL-Pfad auf einer Karte (`map.yaml` inkl. passender `map.pgm`-Datei). Dazu die entsprechenden Dateien im Ordner (`map`, `pathDataAMCL` und `pathOdom`) ersetzen und `plot_comma.py` ausführen.
+* **`plot sim/plot_comma.py`** $\rightarrow$ Visualisiert die geloggte Route der `giovanni_sim`-Node. Dazu die geloggte `pos.dat`-Datei in diesen Ordner kopieren und das Skript ausführen.
+* **`standardplotter/plot_comma.py`** $\rightarrow$ Visualisiert beliebige Routen unserer Nodes. Dazu die gewünschte Datei in `pos.dat` umbenennen, in den Ordner kopieren und das Skript ausführen.
 
 ---
 
 ## Für `Jazzy`
 
-Im Ordner **`vidPfade`** befinden sich die `.dat` files und bag files für die odometriebasierte Pfadverfolgung, die im Video angesprochen wurden.
-Der Ordner **`Beispielspfade`** enthält die zur verfügunggestellten Beispielpfade.
-Der Ordner **`giovanni`** enthält den giovanni-Controller, so wie wir ihn in Regelungstechnik zur Verfügung gestellt bekommen haben. Dies ist nicht die implementierung des Reglers!
-Der Workspace und Sourcecode für das Praktikum ist im Ordner **`volksbot`** zu finden.
+* **`vidPfade/`** $\rightarrow$ Enthält die `.dat`-Files und Bag-Files für die odometriebasierte Pfadverfolgung aus dem Video.
+* **`Beispielspfade/`** $\rightarrow$ Enthält die bereitgestellten Beispielpfade.
+* **`giovanni/`** $\rightarrow$ Enthält den ursprünglichen Giovanni-Controller aus der Vorlesung Regelungstechnik (nicht die eigene Regler-Implementierung!).
+* **`volksbot/`** $\rightarrow$ Enthält den ROS2-Workspace sowie den eigentlichen Sourcecode für das Praktikum.
+
+---
+
+## Für `Humble`
+
+* **`my_path_generator/`** $\rightarrow$ Enthält das Package zum Loggen von Odometrie- und AMCL-Routen. Die Nodes sind in `amcl_path_generator.cpp` und `odom_path_generator.cpp` implementiert.
+* **`giovanni/`** $\rightarrow$ Enthält den bereitgestellten Giovanni-Controller sowie dessen Simulation.
 
 ---
 
 ## Befehlsübersicht & Ausführung
 
-**Starten von rviz2 für das Abspielen von aufgenommenen Bag-Files:**
+### Allgemeine Befehle & Mapping
+
+**RViz2 starten (für das Abspielen von Bag-Files):**
 `ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true`
 
-**Abspielen eines Bag-Files:**
+**Bag-File abspielen:**
 `ros2 bag play [NAME] --clock`
 
 **Cartographer ausführen:**
 `ros2 launch volksbot cartographer2d.launch`
 
-**Speichern der aufgenommenen Karte:**
+**Aufgenommene Karte speichern:**
 `ros2 run nav2_map_server map_saver_cli -f [NAME]`
+
+---
+
+### Ausführung unter ROS2 Jazzy (Odometrie-basiert)
 
 **Pfadverfolgung mittels Odometrie:**
 `ros2 run giovanni gio_node --ros-args -p path:=[PFAD DER .dat DATEI] -p speed:=[SPEED]`
-*(Empfehlung für `[SPEED]` ist `0.15`)*
+*(Empfohlener Wert für `[SPEED]`: `0.15`)*
 
-**Path logger für X- & Y-Koordinaten des Roboters (Funktioniert auch mit Bag-Files):**
+**Path-Logger für X- & Y-Koordinaten (funktioniert auch mit Bag-Files):**
 `ros2 run path_logger logger`
-*(Erstellt eine Datei names `odomXYData.txt` im `ros2_ws` Ordner. Diese kann mit dann z.B. mit GnuPlot geplottet werden. Spalte 1 = X, Spalte 2 = Y)*
+*(Erstellt die Datei `odomXYData.txt` im `ros2_ws`-Ordner. Kann z. B. mit GnuPlot visualisiert werden: Spalte 1 = X, Spalte 2 = Y)*
+
+---
+
+### Ausführung unter ROS2 Humble (AMCL-basiert)
+
+**Simulation starten:**
+`ros2 run giovanni gio_sim_path --ros-args -p path:="[PFAD ZUR .dat DATEI]"`
+
+**AMCL-Pfad loggen:**
+`ros2 run my_path_generator amcl_path_generator`
+
+**Odometrie-Pfad loggen:**
+`ros2 run my_path_generator odom_path_generator`
+
+**Giovanni-Controller auf Basis von AMCL-Daten starten:**
+`ros2 run giovanni gio_volksbot --ros-args -p path:="[PFAD ZUR .dat DATEI]" -p speed:=[SPEED]`
+*(Empfohlener Wert für `[SPEED]`: `0.15`)*
