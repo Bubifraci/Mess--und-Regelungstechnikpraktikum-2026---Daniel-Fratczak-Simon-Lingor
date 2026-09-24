@@ -41,7 +41,7 @@ $ ros2 run nav2_map_server map_saver_cli -f [NAME]
 ```bash
 $ ros2 run giovanni gio_node --ros-args -p path:=[PFAD DER .dat DATEI] -p speed:=[SPEED]
 ```
-* Empfehlung für [SPEED] ist 0.15
+* Empfehlung für `[SPEED]` ist `0.15`
 
 ### Path logger für X- & Y-Koordinaten des Roboters (Funktioniert auch mit Bag-Files):
 ```bash
