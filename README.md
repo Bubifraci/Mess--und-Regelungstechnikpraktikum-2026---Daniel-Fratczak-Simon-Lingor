@@ -17,7 +17,7 @@ datModifier ist das Werkzeug, welches wir zum Modifizieren der .dat Routen verwe
 In plotter/ hingegen finden sich mehrere unterschiedliche Tools:
 - plot map/plot_comma.py -> Dieses Tool vergleicht ein Odometrie- und AMCL-Weg auf einer Karte map.yaml (inkl. der passenden map.pgm Datei). Dazu ersetze man die jeweiligen Dateien in dem Ordner (map, pathDataAMCL und pathOdom) mit demselben Namen in dem Ordner und führe plot_comma.py aus.
 - plot sim/plot_comma.py -> Dieses Tool visualisiert die geloggte Route von unserer Giovanni-Sim-Node. Auch hier gilt: In demselben Ordner die geloggte pos.dat Datei kopieren und die Python Datei ausführen.
-- standardplotter -> Dieses Tool visualisiert beliebige Routen
+- standardplotter/plot_comma.py -> Dieses Tool visualisiert beliebige Routen unserer Nodes. Dazu die Datei zu "pos.dat" umbenennen und in den Ordner kopieren. Dann die Python-Datei ausführen und die Route wird visualisiert.
 
 Für Jazzy:
 Im Ordner vidPfade befinden sich die .dat files und bag files für die odometriebasierte Pfadverfolgung, die im Video angesprochen wurden.
