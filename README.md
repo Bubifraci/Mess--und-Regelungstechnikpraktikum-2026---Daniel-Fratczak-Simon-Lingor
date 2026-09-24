@@ -98,7 +98,7 @@ Im Ordner `plotter/` befinden sich verschiedene Auswertungstools:
 ### Ausführung unter ROS2 Humble (AMCL-basiert)
 
 **Simulation starten:**
-`ros2 run giovanni gio_sim_path --ros-args -p path:="[PFAD ZUR .dat DATEI]"`
+`ros2 run giovanni gio_sim_path --ros-args -p path:="[PFAD DER .dat DATEI]"`
 
 **AMCL-Pfad loggen:**
 `ros2 run my_path_generator amcl_path_generator`
@@ -107,5 +107,5 @@ Im Ordner `plotter/` befinden sich verschiedene Auswertungstools:
 `ros2 run my_path_generator odom_path_generator`
 
 **Giovanni-Controller auf Basis von AMCL-Daten starten:**
-`ros2 run giovanni gio_volksbot --ros-args -p path:="[PFAD ZUR .dat DATEI]" -p speed:=[SPEED]`
+`ros2 run giovanni gio_volksbot --ros-args -p path:="[PFAD DER .dat DATEI]" -p speed:=[SPEED]`
 *(Empfohlener Wert für `[SPEED]`: `0.15`)*
