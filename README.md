@@ -12,7 +12,12 @@ Jazzy -> alle ROS2 src Dateien
 Für tools:
 Hier finden sich zwei Ordner: datModifier und plotter. 
 
-datModifier ist das Werkzeug, welches wir zum Modifizieren der .dat Routen verwenden.
+datModifier ist das Werkzeug, welches wir zum Modifizieren der .dat Routen verwenden. Um dies zu verwenden, füge man die zu bearbeitende Route in denselben Ordner und nenne diese 'path.dat'. Innerhalb des Codes findet man eine Variable namens 'scale', standardmäßig ist diese auf 0.5 gesetzt. Je nachdem, wie die Route skaliert werden soll, kann man diesen Wert anpassen. Ist alles ordnungsgemäß eingerichtet, so kann man die Transformation der Route durchführen, indem man die Python-Datei ausführt: "python3 pathModifier.py" (matplotlib und numpy sind erforderlich!). Die modifizierte Route wird in die Datei "modified.dat" geschrieben und es öffnet sich ein Plot, welches die alte Route mit der modifizierten Route vergleicht. 
+
+In plotter/ hingegen finden sich mehrere unterschiedliche Tools:
+- plot map/plot_comma.py -> Dieses Tool vergleicht ein Odometrie- und AMCL-Weg auf einer Karte map.yaml (inkl. der passenden map.pgm Datei). Dazu ersetze man die jeweiligen Dateien in dem Ordner (map, pathDataAMCL und pathOdom) mit demselben Namen in dem Ordner und führe plot_comma.py aus.
+- plot sim/plot_comma.py -> Dieses Tool visualisiert die geloggte Route von unserer Giovanni-Sim-Node. Auch hier gilt: In demselben Ordner die geloggte pos.dat Datei kopieren und die Python Datei ausführen.
+- standardplotter -> Dieses Tool visualisiert beliebige Routen
 
 Für Jazzy:
 Im Ordner vidPfade befinden sich die .dat files und bag files für die odometriebasierte Pfadverfolgung, die im Video angesprochen wurden.
